@@ -24,6 +24,8 @@ By default, the server uses bash (Bourne Again SHell) to interpret your commands
     
 - Want multple windows/panes open at the same time? Try using iTerm2 (you have to download from the internet) or try using something called `tmux` (google it!). 
 
+-------------------------
+
 ### `man` pages
 
 These are (usually) good resources for the commands we will run. They include the arguments the unix command expects and what other options are available.
@@ -35,9 +37,13 @@ Once the man page is open, you can use `d` for page down and `u` for page up. Ty
 
 Google the command and you will find numerous examples of how to use the command plus its various options to do the exact thing you want it to do. 
 
+-------------------------
+
 ### Tab delimited files
 
 The output of most bioinformatic software is really just a text file. With a lot of lines. For files containing certain types of infomation (raw sequencing reads -> FASTQ; mapped reads -> SAM/BAM; etc), there are standardized formats to which everyone adheres. Aside from having specific types on information stored on lines (ie FASTQ, every 4th line has the same type of information), many files are output as tab delimited files, in which each column contains a specific type of information. Not only understanding how the files should be formatted, but also knowing how to extract the information you want from them via command line is a quick way to organize/check the output. The tab character is `\t` and newline is `\n`. 
+
+-------------------------
 
 ### I/O stream redirection
 
@@ -53,12 +59,15 @@ As hard as you may try, some series of commands are just not compatible. This sh
     
 Achtung! This redirection will overwrite any file of the same name every time you run the command. If you want to append to a file, you can use `>>`.
 
-    
+-------------------------
+
 ### More about `less`
 
 The `less` command is a nice way to view and search any standard output printed to a screen. (The `cat` command prints all the contents of a file as standard output). I often use it to 'open' a file to see its contents. Once you see the contents on the screen, you are able to scroll through using the arrow keys, search for patterns, and more (check the `man` page!). This is really useful if a file format requires a special tool to view the file, but subsequently would print everything on the screen all at once with no hope of scrolling through or searching. Search further down the document using `/` then typing the pattern you want to look for, `?` to search for the pattern further up in the file, `n` to find the next instance of the pattern. Type `q` to exit back to the command line prompt.
 
     $ less file.txt
+
+-------------------------
     
 ### Count stuff with `wc`
 
@@ -70,7 +79,9 @@ Counts and prints number of lines, words, and bytes (all three by default) for e
     
     $ wc -l file.txt
     $ wc -c file1.txt file2.txt
-    
+ 
+-------------------------
+   
 ### Pattern grab with `grep`
 
 The `grep` command searches for matches to a pattern of characters in each file and prints the entire line that contains the pattern. This is case sensitive by default.
@@ -89,6 +100,8 @@ Examples
     $ grep -c "CDS" Medtr.gff
     $ grep -vc "CDS" Medtr.gff
 
+-------------------------
+
 ### Slice columns with `cut`
 
 The `cut` command allows you to extract information from specific columns. Downside: you need to know the number(s) of the column(s) you want. Counting starts at 1 from the left most column.
@@ -103,6 +116,8 @@ Examples
 
     $ cut –f 1,3-5,7 Medtr.gff | less
     $ cut –s Medtr.gff  | less
+
+-------------------------
 
 ### Translate or delete with `tr`
 
@@ -120,6 +135,8 @@ Examples
     $ cat Medtr.gff | tr '\t' ' ' | less
     $ cat MedtrChr2.fa | tr -d '\n' | less
 
+-------------------------
+
 ### `sort` lines alphanumerically
 
     sort [-rnu] file
@@ -133,6 +150,8 @@ Examples
     $ echo "10 1 12 11 100 2" | tr ' ' '\n' | sort -n
     $ echo "10 1 12 11 100 2" | tr ' ' '\n' | sort -nr
     $ echo "12 10 11 12 12 11" | tr ' ' '\n' | sort -u
+
+-------------------------
 
 ### Feel special with `uniq`
 
@@ -149,6 +168,8 @@ Examples
 
 Considers only *consecutive* duplicates. Therefore, you almost always want to use sort first!
 
+-------------------------
+
 ### A word on working with compressed files
 
 The commands above work with uncompressed, plain text files. Many tools either output compressed (gzipped, bzipped, etc) files, collaborators will send you compressed files or you should compress your files to save disk space. When they are compressed, you need to slightly modify your commands to deal with those files. Some are pre-modified:
@@ -163,8 +184,18 @@ These are special. Unfortunately, you can't just put a 'z' in front of any comma
 Sometimes, you'll have to pipe commands to make it work: 
 
     $ zcat file.txt.gz | cut -f1 -d "_" > newfile.txt
-    
+ 
+-------------------------
+   
 ### Command cheat sheet
 
 {insert table here}
 
+# Exercises
+
+GFF file located in /srv/kenlab/bio373_2019/SNPdata
+1. GFF files contains information on features of a sequence: genes, introns, etc. Take a look and familiarize yourself with the format.
+2. How many lines are in Medtr.gff? Characters?
+3. How would you get only the ID information from the attribute column (column 9) of Medtr.gff without printing the header line?
+4. How many of each type of feature (column 3) are there?
+5. How many CDS’s are there within chr1?
