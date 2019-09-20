@@ -12,6 +12,18 @@ Reminder: our server runs on a Linux operating system. The following commands ar
 
 By default, the server uses bash (Bourne Again SHell) to interpret your commands to tell the computer what to do. 
 
+### Pro tips for working (quickly) in the terminal
+
+- At the prompt (where the `$` always is), the up/down arrows allow you to scroll through the commands you have run during the session. 
+- To put your cursor at the beginning of the line while you're typing at the prompt: `Ctrl + a`
+- To put your cursor at the end of the line while you're typing at the prompt: `Ctrl + e`
+- While you're typing a file or directory that might be really long, you can type the first few characters, then press `tab` (the key that looks a bit like `-->|`) and it should auto-complete if you typed enough characters for it to figure it out. This is called tab completion. 
+- To go to the last directory you were in (especially useful if you went from /omg/super/long/path to /here/is/another/long/path in one command):
+
+     $ cd -
+    
+- Want multple windows/panes open at the same time? Try using iTerm2 (you have to download from the internet, I don't think that's allowed on the course computers) or try using something called `tmux` (google it!). 
+- 
 ### `man` pages
 
 These are (usually) good resources for the commands we will run. They include the arguments the unix command expects and what other options are available.
@@ -149,36 +161,3 @@ Sometimes, you'll have to pipe commands to make it work:
 
 {insert table here}
 
-## BASH scripting
-
-Bash scripts are a nice, basic way to automate, record your commands, and start practicing reproducibility!
-
-### Basics
-
-A bash script is really just a series of bash commands and/or any other command that's been configured to run via the shell. They are executed in the order you put them in the script. The very first line should be the "shebang", telling the computer which interpreter to use (this is only really necessary if you want to use a different interpreter/version/whatever than the default, but put it in there anyway).
-
-Shebang:
-
-    #!/bin/bash
-    
-You need a text editor (discussed below) to write the script. For good practice and human readability, the file should be saved with the `.sh` extension.
-
-After the shebang, any line that begins with a `#` is considered a comment and is ignored by the computer when you run the script. 
-
-Scripts are run as follows:
-
-    $ bash script.sh
-    
-### Text editors
-
-Anything that will save your file as a plain text. There are several options on the server already (nano, emacs, vim). These are applications to be used in the terminal and the files are saved in the current directory you're in when you open the application. On the other hand, there are several options from GUIs (TextWrangler, XCode, TextEdit, etc) that you can use on the local computer. These feel more intuitive to people, but you must then copy the script onto the server (using `scp`) if you want to execute it there. Microsoft Word does not count!
-
-### Variables
-
-    varName="value"
-
-- varName stores "value" for the duration of your shell session
-- No spaces around =
-- varName can have letters, numbers and underscores but cannot start with a number
-- Retrieve the value by prepending variable name with $ (ie $varName)
-- $ can be used with curly braces or double quotes to avoid confusion with any following text (ie ${varName})
