@@ -46,4 +46,8 @@ Examples (run in order):
     $ echo "$test_var"
     $ echo "${test}_var"
 
-### Loopin n poopin
+### Control the flow of your commands
+
+Conditionals and loops
+
+
