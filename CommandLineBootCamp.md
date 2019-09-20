@@ -86,8 +86,8 @@ The `grep` command searches for matches to a pattern of characters in each file 
 Examples
 
     $ grep "CDS" Medtr.gff | less
-    $ grep –c "CDS" Medtr.gff
-    $ grep –vc "CDS" Medtr.gff
+    $ grep -c "CDS" Medtr.gff
+    $ grep -vc "CDS" Medtr.gff
 
 ### Slice columns with `cut`
 
@@ -144,8 +144,8 @@ Find unique instances of strings.
 Examples
 
     $ echo "12 10 11 12 12 11" | tr ' ' '\n' | uniq
-    $ echo “12 10 11 12 12 11” | tr ‘ ‘ ‘\n’ | sort | uniq
-    $ echo “12 10 11 12 12 11” | tr ‘ ‘ ‘\n’ | sort | uniq –c
+    $ echo "12 10 11 12 12 11" | tr ' ' '\n' | sort | uniq
+    $ echo "12 10 11 12 12 11" | tr ' ' '\n' | sort | uniq -c
 
 Considers only *consecutive* duplicates. Therefore, you almost always want to use sort first!
 
