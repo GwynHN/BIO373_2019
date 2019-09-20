@@ -39,13 +39,20 @@ Google the command and you will find numerous examples of how to use the command
 
 The output of most bioinformatic software is really just a text file. With a lot of lines. For files containing certain types of infomation (raw sequencing reads -> FASTQ; mapped reads -> SAM/BAM; etc), there are standardized formats to which everyone adheres. Aside from having specific types on information stored on lines (ie FASTQ, every 4th line has the same type of information), many files are output as tab delimited files, in which each column contains a specific type of information. Not only understanding how the files should be formatted, but also knowing how to extract the information you want from them via command line is a quick way to organize/check the output. The tab character is `\t` and newline is `\n`. 
 
-### Pipe dreams
+### I/O stream redirection
 
-You can manipulate a data stream using multiple commands on one line using the pipe `|`. This takes the standard output (usually what's printed on the screen) of the first command and immediately enters it as input for the following command. Spaces are not required surrounding the pipe, but it makes it easier to read. 
+1. You can manipulate a data stream using multiple commands on one line using the pipe `|`. This takes the standard output (usually what's printed on the screen) of the first command and immediately enters it as input for the following command. Spaces are not required surrounding the pipe, but it makes it easier to read. 
 
     $ command1 file.txt | command 2
     
 As hard as you may try, some series of commands are just not compatible. This should not really be the case for the course, but if you start trying to make the longest single command possible, it just won't work!
+
+2. You can redirect standard output (most of what's printed to the screen) to a file and save using the `>` character.
+
+    $ outputcommand input.txt > thisistheoutput.txt
+    
+Achtung! This redirection will overwrite any file of the same name every time you run the command. If you want to append to a file, you can use `>>`.
+
     
 ### More about `less`
 
@@ -122,10 +129,10 @@ Examples
 
 Examples
 
-    $ echo “10 1 12 11 100 2” | tr ‘ ‘ ‘\n’ | sort
-    $ echo “10 1 12 11 100 2” | tr ‘ ‘ ‘\n’ | sort -n
-    $ echo “10 1 12 11 100 2” | tr ‘ ‘ ‘\n’ | sort -nr
-    $ echo “12 10 11 12 12 11” | tr ‘ ‘ ‘\n’ | sort -u
+    $ echo "10 1 12 11 100 2" | tr ' ' '\n' | sort
+    $ echo "10 1 12 11 100 2" | tr ' ' '\n' | sort -n
+    $ echo "10 1 12 11 100 2" | tr ' ' '\n' | sort -nr
+    $ echo "12 10 11 12 12 11" | tr ' ' '\n' | sort -u
 
 ### Feel special with `uniq`
 
@@ -136,7 +143,7 @@ Find unique instances of strings.
 
 Examples
 
-    $ echo “12 10 11 12 12 11” | tr ‘ ‘ ‘\n’ | uniq
+    $ echo "12 10 11 12 12 11" | tr ' ' '\n' | uniq
     $ echo “12 10 11 12 12 11” | tr ‘ ‘ ‘\n’ | sort | uniq
     $ echo “12 10 11 12 12 11” | tr ‘ ‘ ‘\n’ | sort | uniq –c
 
