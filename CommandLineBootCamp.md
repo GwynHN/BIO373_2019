@@ -33,9 +33,11 @@ You can manipulate a data stream using multiple commands on one line using the p
 
     $ command1 file.txt | command 2
     
+As hard as you may try, some series of commands are just not compatible. This should not really be the case for the course, but if you start trying to make the longest single command possible, it just won't work!
+    
 ### More about `less`
 
-The `less` command is a nice way to view and search any standard output printed to a screen. I often use it to 'open' a file to see its contents. Once you see the contents on the screen, you are able to scroll through using the arrow keys, search for patterns, and more (check the `man` page!). This is really useful if a file format requires a special tool to view the file, but subsequently would print everything on the screen all at once with no hope of scrolling through or searching. Search further down the document using `/` then typing the pattern you want to look for, `?` to search for the pattern further up in the file, `n` to find the next instance of the pattern. Type `q` to exit back to the command line prompt.
+The `less` command is a nice way to view and search any standard output printed to a screen. (The `cat` command prints all the contents of a file as standard output). I often use it to 'open' a file to see its contents. Once you see the contents on the screen, you are able to scroll through using the arrow keys, search for patterns, and more (check the `man` page!). This is really useful if a file format requires a special tool to view the file, but subsequently would print everything on the screen all at once with no hope of scrolling through or searching. Search further down the document using `/` then typing the pattern you want to look for, `?` to search for the pattern further up in the file, `n` to find the next instance of the pattern. Type `q` to exit back to the command line prompt.
 
     $ less file.txt
     
@@ -50,9 +52,9 @@ Counts and prints number of lines, words, and bytes (all three by default) for e
     $ wc -l file.txt
     $ wc -c file1.txt file2.txt
     
-### Pattern search with `grep`
+### Pattern grab with `grep`
 
-Searches for matches to a pattern of characters in each file and prints the entire line which contains the pattern. This is case sensitive by default.
+The `grep` command searches for matches to a pattern of characters in each file and prints the entire line that contains the pattern. This is case sensitive by default.
 
     grep [-civ] "pattern" file(s).txt
     
@@ -68,3 +70,115 @@ Examples
     $ grep –c "CDS" Medtr.gff
     $ grep –vc "CDS" Medtr.gff
 
+### Slice columns with `cut`
+
+The `cut` command allows you to extract information from specific columns. Downside: you need to know the number of the column you want. Counting starts at 1, from the left most column.
+
+    cut –f [-s]  1,4-6 [-d ","] file.txt
+
+    -f Select fields (columns); Range or comma separated numbers
+    -s Return only lines which contain one or more delimiter characters
+    -d Field delimiter. Tab (\t) is default
+
+Examples
+
+    $ cut –f 1,3-5,7 Medtr.gff | less
+    $ cut –s Medtr.gff  | less
+
+### Translate or delete with `tr`
+
+Replaces characters (Char1) with other characters (Char2) and prints to screen. You can also do character/string replacement with something like `sed`, but that requires knowledge of regular expressions. I won't cover that here, but it's not difficult to use.
+
+    tr [-d] Char1 [Char2]
+
+    -d delete Char1 (no Char2), in single quotes
+
+Reminder: New line = `\n`, tab = `\t`, and space = ' '
+
+Examples
+
+    $ echo "Hello World" | tr ' ' '\n'
+    $ cat Medtr.gff | tr '\t' ' ' | less
+    $ cat MedtrChr2.fa | tr -d '\n' | less
+
+### `sort` lines alphanumerically
+
+    sort [-rnu] file
+    -r Sort in reverse
+    -n Use numerical sort
+    -u Return only unique lines
+
+Examples
+
+    $ echo “10 1 12 11 100 2” | tr ‘ ‘ ‘\n’ | sort
+    $ echo “10 1 12 11 100 2” | tr ‘ ‘ ‘\n’ | sort -n
+    $ echo “10 1 12 11 100 2” | tr ‘ ‘ ‘\n’ | sort -nr
+    $ echo “12 10 11 12 12 11” | tr ‘ ‘ ‘\n’ | sort -u
+
+### Feel special with `uniq`
+
+Find unique instances of strings.
+
+    uniq [-c] file
+     -c Count the number of occurrences for each output line: 1st column is the count, 2nd column is the unique string
+
+Examples
+
+    $ echo “12 10 11 12 12 11” | tr ‘ ‘ ‘\n’ | uniq
+    $ echo “12 10 11 12 12 11” | tr ‘ ‘ ‘\n’ | sort | uniq
+    $ echo “12 10 11 12 12 11” | tr ‘ ‘ ‘\n’ | sort | uniq –c
+
+Considers only *consecutive* duplicates. Therefore, you almost always want to use sort first!
+
+### A word on working with compressed files
+
+The commands above work with uncompressed, plain text files. Many tools either output compressed (gzipped, bzipped, etc) files, collaborators will send you compressed files or you should compress your files to save disk space. When they are compressed, you need to slightly modify your commands to deal with those files. Some are pre-modified:
+
+    $ zless file.txt.gz
+    $ zcat file.txt.gz
+    $ zdiff file.txt.gz
+    $ zgrep file.txt.gz
+    
+These are special. Unfortunately, you can't just put a 'z' in front of any command to have it magically work!
+
+Sometimes, you'll have to pipe commands to make it work: 
+
+    $ zcat file.txt.gz | cut -f1 -d "_" > newfile.txt
+    
+### Command cheat sheet
+
+{insert table here}
+
+## BASH scripting
+
+Bash scripts are a nice, basic way to automate, record your commands, and start practicing reproducibility!
+
+### Basics
+
+A bash script is really just a series of bash commands and/or any other command that's been configured to run via the shell. They are executed in the order you put them in the script. The very first line should be the "shebang", telling the computer which interpreter to use (this is only really necessary if you want to use a different interpreter/version/whatever than the default, but put it in there anyway).
+
+Shebang:
+
+    #!/bin/bash
+    
+You need a text editor (discussed below) to write the script. For good practice and human readability, the file should be saved with the `.sh` extension.
+
+After the shebang, any line that begins with a `#` is considered a comment and is ignored by the computer when you run the script. 
+
+Scripts are run as follows:
+
+    $ bash script.sh
+    
+### Text editors
+
+Anything that will save your file as a plain text. There are several options on the server already (nano, emacs, vim). These are applications to be used in the terminal and the files are saved in the current directory you're in when you open the application. On the other hand, there are several options from GUIs (TextWrangler, XCode, TextEdit, etc) that you can use on the local computer. These feel more intuitive to people, but you must then copy the script onto the server (using `scp`) if you want to execute it there. Microsoft Word does not count!
+
+### Variables
+
+    varName="value"
+
+- varName stores "value" for the duration of your shell session
+- No spaces around =
+- varName can have letters, numbers and underscores but cannot start with a number
+- Retrieve the value by prepending variable name with $ (ie $varName)
+- $ can be used with curly braces or double quotes to avoid confusion with any following text (ie ${varName})
