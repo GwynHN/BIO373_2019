@@ -22,8 +22,8 @@ By default, the server uses bash (Bourne Again SHell) to interpret your commands
 
      $ cd -
     
-- Want multple windows/panes open at the same time? Try using iTerm2 (you have to download from the internet, I don't think that's allowed on the course computers) or try using something called `tmux` (google it!). 
-- 
+- Want multple windows/panes open at the same time? Try using iTerm2 (you have to download from the internet) or try using something called `tmux` (google it!). 
+
 ### `man` pages
 
 These are (usually) good resources for the commands we will run. They include the arguments the unix command expects and what other options are available.
@@ -43,7 +43,7 @@ The output of most bioinformatic software is really just a text file. With a lot
 
 1. You can manipulate a data stream using multiple commands on one line using the pipe `|`. This takes the standard output (usually what's printed on the screen) of the first command and immediately enters it as input for the following command. Spaces are not required surrounding the pipe, but it makes it easier to read. 
 
-    $ command1 file.txt | command 2
+    $ command1 file.txt | command2
     
 As hard as you may try, some series of commands are just not compatible. This should not really be the case for the course, but if you start trying to make the longest single command possible, it just won't work!
 
@@ -91,13 +91,13 @@ Examples
 
 ### Slice columns with `cut`
 
-The `cut` command allows you to extract information from specific columns. Downside: you need to know the number of the column you want. Counting starts at 1, from the left most column.
+The `cut` command allows you to extract information from specific columns. Downside: you need to know the number(s) of the column(s) you want. Counting starts at 1 from the left most column.
 
     cut –f [-s]  1,4-6 [-d ","] file.txt
 
     -f Select fields (columns); Range or comma separated numbers
     -s Return only lines which contain one or more delimiter characters
-    -d Field delimiter. Tab (\t) is default
+    -d Field delimiter. Tab (\t) is default.
 
 Examples
 
