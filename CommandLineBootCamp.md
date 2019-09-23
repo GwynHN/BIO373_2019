@@ -17,7 +17,7 @@ By default, the server uses bash (Bourne Again SHell) to interpret your commands
 - At the prompt (where the `$` always is), the up/down arrows allow you to scroll through the commands you have run during the session. 
 - To put your cursor at the beginning of the line while you're typing at the prompt: `Ctrl + a`
 - To put your cursor at the end of the line while you're typing at the prompt: `Ctrl + e`
-- While you're typing a file or directory that might be really long, you can type the first few characters, then press `tab` (the key that looks a bit like `-->|`) and it should auto-complete if you typed enough characters for it to figure it out. This is called tab completion. 
+- While you're typing a file or directory name that might be really long, you can type the first few characters, then press `tab` (the key that looks a bit like `-->|`) and it should auto-complete if you typed enough characters for it to figure it out. This is called tab completion. 
 - To go to the last directory you were in (especially useful if you went from /omg/super/long/path to /here/is/another/long/path in one command):
 
      $ cd -
@@ -193,9 +193,12 @@ Sometimes, you'll have to pipe commands to make it work:
 
 # Exercises
 
-GFF file located in /srv/kenlab/bio373_2019/SNPdata
-1. GFF files contains information on features of a sequence: genes, introns, etc. Take a look and familiarize yourself with the format.
-2. How many lines are in Medtr.gff? Characters?
-3. How would you get only the ID information from the attribute column (column 9) of Medtr.gff without printing the header line?
-4. How many of each type of feature (column 3) are there?
-5. How many CDS’s are there within chr1?
+GFF file located in /srv/kenlab/bio373_2019/SNPcalling/reference
+
+GFF files contains information on features of a sequence: genes, introns, etc. Take a look and familiarize yourself with the format.
+1. How many lines are in Ahal.gff? Characters?
+2. How would you get only the ID information from the attribute column (column 9) of Ahal.gff without printing the header line?
+3. How many of each type of feature (column 3) are there?
+4. How many CDS’s are there within chr1?
+
+Answers will be uploaded as text files in /srv/kenlab/bio373_2019/SNPcalling/answers
