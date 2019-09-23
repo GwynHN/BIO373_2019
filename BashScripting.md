@@ -4,7 +4,7 @@ Bash scripts are a nice, basic way to automate, record your commands, and start 
 
 ## Basics
 
-A bash script is really just a series of bash commands and/or any other command that's been configured to run via the shell. They are executed in the order you put them in the script. The very first line should be the "shebang", telling the computer which interpreter to use (this is only really necessary if you want to use a different interpreter/version/whatever than the default, but put it in there anyway).
+A bash script is really just a series of bash commands and/or any other command that's been configured to run via the shell. They are executed in the order you put them in the script. The very first line should be the "shebang" `#!`, telling the computer which interpreter to use (this is only really necessary if you want to use a different interpreter/version/whatever than the default, but put it in there anyway).
 
 Shebang:
 
@@ -104,5 +104,10 @@ Example:
 	        ~/bin/fastq-dump --origfmt -I --split-files --gzip -O Sequencing_data_lyrata ${accession}
         done < inputList.txt
 
+`inputList.txt` would look like this:
+
+   SRR2040789    
+   SRR2040805    
+   SRR2040804    
 
 
