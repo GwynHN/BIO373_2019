@@ -48,6 +48,61 @@ Examples (run in order):
 
 ### Control the flow of your commands
 
-Conditionals and loops
+You can apply basic programming principles in bash scripts. Bash has it's own syntax and the following are some examples of the bash syntax.
+
+---------------------------------------
+
+**Conditional**
+
+A space between the square bracket and the conditional statement is required!
+
+    if [ <condition> ]
+    then
+        command
+    else
+        otherCommand
+    fi
+
+Example:
+
+    if [ ! -d $outdir ]
+    then
+        mkdir ${outdir}
+    fi
+    
+If the path stored in the $outdir variable does not exist, make it.
+
+---------------------------------------
+
+**Loops**
+
+    for item in list
+    do
+        command $item
+    done
+    
+Example:
+
+    for genotype in "w51690" "w66039"
+    do
+        echo "Genotype $genotype has these files in this directory: "
+        ls ${genotype}*
+    done
+    
+Another one I like to use takes a file as input and loops through each line of the file.
+
+    while read item
+    do
+        command ${item}
+    done < input.txt    
+
+Example:
+
+    while read accession
+	    do
+	        echo ${accession} 
+	        ~/bin/fastq-dump --origfmt -I --split-files --gzip -O Sequencing_data_lyrata ${accession}
+        done < inputList.txt
+
 
 
