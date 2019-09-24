@@ -18,11 +18,6 @@ Now we can run the mapping tool BWA and pipe the output through samtools, which 
 
     $ mkdir 01_aligned
     $ acc=w516950
-    $ bwa mem -M -t 2 \
--R "@RG\tID:CAV90ANXX.6\tPL:Illumina\tLB:${acc}\tSM:${acc}" \
-00_input/MedtrChr2.fa \
-00_input/${acc}_R{1,2}.fastq.gz \
-| samtools sort -m 16G -T /scratch/gwynhn \
--o 01_aligned/${acc}.sorted.bam
+    $ bwa mem -M -t 2 -R "@RG\tID:CAV90ANXX.6\tPL:Illumina\tLB:${acc}\tSM:${acc}" 00_input/MedtrChr2.fa 00_input/${acc}_R{1,2}.fastq.gz | samtools sort -m 16G -T /scratch/gwynhn -o 01_aligned/${acc}.sorted.bam
 
 
