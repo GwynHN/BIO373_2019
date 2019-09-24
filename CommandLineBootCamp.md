@@ -68,6 +68,17 @@ The `less` command is a nice way to view and search any standard output printed 
     $ less file.txt
 
 -------------------------
+
+### Save space with symlinks
+
+
+Often you'll want/need to have a file in directories in several locations. Instead of copying the file everytime, you can create a symbolic link (symlink) to the original file location.
+
+
+    $ ln -s /path/to/file.txt targetName.txt
+    $ ln -s /srv/kenlab/bio373_2019/SNPcalling/reference/Ahal.gff /srv/kenlab/gwyn/bio373_2019/Ahal.gff 
+
+-------------------------
     
 ### Count stuff with `wc`
 
@@ -93,12 +104,13 @@ The `grep` command searches for matches to a pattern of characters in each file 
     -i Perform case insensitive match
     '^word' ^ searches for lines beginning only with 'word'
     'word$' $ searches for lines only ending with 'word'
+    'word/b' limit search with \b (ie "words" not found, "sword" found)
 
 Examples
 
-    $ grep "CDS" Medtr.gff | less
-    $ grep -c "CDS" Medtr.gff
-    $ grep -vc "CDS" Medtr.gff
+    $ grep "CDS" Ahal.gff | less
+    $ grep -c "CDS" Ahal.gff
+    $ grep -vc "CDS" Ahal.gff
 
 -------------------------
 
@@ -114,8 +126,8 @@ The `cut` command allows you to extract information from specific columns. Downs
 
 Examples
 
-    $ cut –f 1,3-5,7 Medtr.gff | less
-    $ cut –s Medtr.gff  | less
+    $ cut –f 1,3-5,7 Ahal.gff | less
+    $ cut -f 1 –s Ahal.gff  | less
 
 -------------------------
 
@@ -132,8 +144,8 @@ Reminder: New line = `\n`, tab = `\t`, and space = ' '
 Examples
 
     $ echo "Hello World" | tr ' ' '\n'
-    $ cat Medtr.gff | tr '\t' ' ' | less
-    $ cat MedtrChr2.fa | tr -d '\n' | less
+    $ cat Ahal.gff | tr '\t' ' ' | less
+    $ cat Medtr.fa | tr -d '\n' | less
 
 -------------------------
 
@@ -187,18 +199,25 @@ Sometimes, you'll have to pipe commands to make it work:
  
 -------------------------
    
-### Command cheat sheet
-
-{insert table here}
 
 # Exercises
 
 GFF file located in /srv/kenlab/bio373_2019/SNPcalling/reference
 
 GFF files contains information on features of a sequence: genes, introns, etc. Take a look and familiarize yourself with the format.
+
+http://www.ensembl.org/info/website/upload/gff.html
+
 1. How many lines are in Ahal.gff? Characters?
-2. How would you get only the ID information from the attribute column (column 9) of Ahal.gff without printing the header line?
-3. How many of each type of feature (column 3) are there?
-4. How many CDS’s are there within chr1?
+2. How many of each type of feature (column 3) are there?
+3. How many CDS’s are there within scaffold1?
+
+Extra practice:
+
+Zip the file and modify your commands to answer the same questions!
+
+$ cp /srv/kenlab/bio373_2019/SNPcalling/reference/Ahal.gff YOUR_DIRECTORY/
+$ cd YOUR_DIRECTORY
+$ gzip Ahal.gff
 
 Answers will be uploaded as text files in /srv/kenlab/bio373_2019/SNPcalling/answers
