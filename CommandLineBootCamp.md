@@ -216,8 +216,8 @@ Extra practice:
 
 Zip the file and modify your commands to answer the same questions!
 
-$ cp /srv/kenlab/bio373_2019/SNPcalling/reference/Ahal.gff YOUR_DIRECTORY/
-$ cd YOUR_DIRECTORY
-$ gzip Ahal.gff
+    $ cp /srv/kenlab/bio373_2019/SNPcalling/reference/Ahal.gff YOUR_DIRECTORY/
+    $ cd YOUR_DIRECTORY
+    $ gzip Ahal.gff
 
 Answers will be uploaded as text files in /srv/kenlab/bio373_2019/SNPcalling/answers
