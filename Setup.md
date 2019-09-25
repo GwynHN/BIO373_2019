@@ -56,6 +56,8 @@ This is the output file given to you after sequencing and contain the reads.
 
 More info: https://en.wikipedia.org/wiki/FASTQ_format
 
+For the quality score encoding: https://support.illumina.com/help/BaseSpace_OLH_009008/Content/Source/Informatics/BS/QualityScoreEncoding_swBS.htm
+
 ## Exercises
 
 1. How many sequences are there in the reference sequence file (MedtrChr2.fa)? 
