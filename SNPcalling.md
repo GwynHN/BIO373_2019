@@ -24,6 +24,8 @@ First, you need to call variants in each samples. This creates a gVCF file. The 
 
 **Run again for sample 660389**
 
+Note: you can view the contents of a gVCF or VCF using zless. It is a regular text file that has been compressed. This is different than trying to view the BAM files before.
+
 ## Joint genotyping
 
 This steps takes the input of gVCFs from each sample and combines them. This step recalculates some statistics and gives a more confident call of the variant at a particular site.
@@ -41,7 +43,7 @@ This steps takes the input of gVCFs from each sample and combines them. This ste
 
 ## Filtering out low quality data
 
-This last step flags the variants that are low confidence. It will put the filterName in the INFO column and the G_filterName in the sample specific column. If at least one sample fails the G_filter, `FT` shows up in the FORMAT column. If all samples pass the G_filter, nothing shows up in the FORMAT column. This is something GATK might claim as a feature, not a bug. 
+This last step flags the variants that are low confidence. It will put the filterName in the INFO column and the G_filterName in the sample specific column if the site failed the filter. If at least one sample fails the G_filter, `FT` shows up in the FORMAT column. If all samples pass the G_filter, nothing shows up in the FORMAT column. This is something GATK might claim as a feature, not a bug. 
 
     $ java -jar $GATK_jar -T VariantFiltration -R 00_input/MedtrChr2.fa -o 03_callSNPs/05_variants_filtered.vcf.gz -V 03_callSNPs/04_raw_variants.vcf.gz --filterExpression "! vc.hasAttribute('QD') || QD < 2.0" --filterName "QD" --filterExpression "vc.isSNP() && (MQ < 30.0 || (vc.hasAttribute('MQRankSum') && MQRankSum < -15.0))" --filterName "MQ" -G_filter "GQ < 20 || DP == 0" -G_filterName "GQ" --setFilteredGtToNocall
 
