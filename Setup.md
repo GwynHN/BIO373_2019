@@ -62,7 +62,7 @@ For the quality score encoding: https://support.illumina.com/help/BaseSpace_OLH_
 
 1. How many sequences are there in the reference sequence file (MedtrChr2.fa)? 
 
-2. How many reads does each fastq file have (w*_R1.fastq.gz)? Does each sample have the same number of R1 and R2 reads? (Caution: Q scores can be + or @)
+2. How many reads does each fastq file have (\*_R1.fastq.gz)? Does each sample have the same number of R1 and R2 reads? (Caution: Q scores can be + or @)
 
 3. How many bases are in the reference sequence? How many missing bases (N)? Don’t forget ‘\n’ is considered a character!
 
