@@ -67,10 +67,10 @@ These exercises are really just designed to try to get you to understand what ma
 
 Bitwise flag meaning: https://broadinstitute.github.io/picard/explain-flags.html
 
-
-1. Find bitwise flags for a few reads in any bam file and decode them using the link below. Additionally, check only one box at a time to see what an individual property’s value is.
+1. Find bitwise flags for a few reads in any bam file and decode them using the link above. On the website, you can check only one box at a time to see what an individual property’s value is.
 
 2. Using samtools tview, go to chr2:7271 in 516950.dedup.bam by pressing ‘g’ then typing chr2:7271[Enter]. Compare that with chr2:1018541. Why do you think they are different in terms of coverage and mapping quality? Find a few other areas that look interesting to you and take note of their position.
+
 3. Do these regions look the same in sample 660389?
 
 4. How many unique bitwise flags are there in 516950.sorted.bam file? The dedupped bam file? How many reads were marked as duplicates? (Hint: the flags are the sum of the value of each individual property assigned to a read; duplicate = 1024)
