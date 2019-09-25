@@ -65,6 +65,9 @@ While in the samtools tview, use the `?` to open the menu and `q` to exit. Once 
 
 These exercises are really just designed to try to get you to understand what mapping does with the reads and what a potential variant might look like in a BAM file. 
 
+Bitwise flag meaning: https://broadinstitute.github.io/picard/explain-flags.html
+
+
 1. Find bitwise flags for a few reads in any bam file and decode them using the link below. Additionally, check only one box at a time to see what an individual property’s value is.
 
 2. Using samtools tview, go to chr2:7271 in 516950.dedup.bam by pressing ‘g’ then typing chr2:7271[Enter]. Compare that with chr2:1018541. Why do you think they are different in terms of coverage and mapping quality? Find a few other areas that look interesting to you and take note of their position.
