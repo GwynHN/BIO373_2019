@@ -18,10 +18,10 @@ It will ask you to enter you password. Use the BFabric password. You will not be
 
 On your local computer
 
-$ cd ~/.ssh
-$ ssh-keygen -t rsa -b 4096 #Press [Enter] for each line unless you want a passphrase, but then you are entering the passphrase each time you try to log in
-$ ssh-copy-id gwynhn@fgcz-c-047 #This copies the public key to the fgcz server in ~/.ssh/authorized_keys
-$ vi config # Or any text editor. You just need the block below; indentation is necessary!
+    $ cd ~/.ssh
+    $ ssh-keygen -t rsa -b 4096 #Press [Enter] for each line unless you want a passphrase, but then you are entering the passphrase each time you try to log in
+    $ ssh-copy-id gwynhn@fgcz-c-047 #This copies the public key to the fgcz server in ~/.ssh/authorized_keys
+    $ vi config # Or any text editor. You just need the block below; indentation is necessary!
 
     Host f47
         HostName fgcz-c-047
