@@ -10,7 +10,7 @@ You need your BFabric username and password to login. After your account has bee
 
 To login, from the terminal type:
 
-    $ ssh USERNAME@fgcz-c-047.uzh.ch
+    $ ssh USERNAME@fgcz-c-047
 
 It will ask you to enter you password. Use the BFabric password. You will not be able to see what you typed or even how many characters you typed, so in order to get around that, check below!
 
