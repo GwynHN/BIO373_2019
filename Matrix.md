@@ -30,3 +30,12 @@ On your local computer
 
 Should be able to login using `ssh f47` without password...might ask for it once, but not after that first time.
 
+Login in to use ZSH:
+
+    $ ssh f47 -t zsh
+
+# Directory organization
+
+1. In `/srv/kenlab` make a directory for yourself
+2. In `/home/kajung` make a symlink to your /srv/kenlab/USERNAME
+3. Setup config on local computer for passwordless `ssh`
